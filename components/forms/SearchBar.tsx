@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { useSearch } from "../providers/SearchContextProvider";
 
 const SearchBar = () => {
-  const { searchQuery, updateSearchQuery } = useSearch();
+  const { searchQuery, updateSearchQuery, resetSearchQuery } = useSearch();
   const [query, setQuery] = useState("");
 
   useEffect(() => {
@@ -15,6 +15,7 @@ const SearchBar = () => {
     e.preventDefault();
     console.log("Query:", query);
     updateSearchQuery(query);
+    e.target.reset();
   };
 
   return (
@@ -28,7 +29,7 @@ const SearchBar = () => {
           type="text"
           onChange={e => setQuery(e.target.value)}
           placeholder="Search for movies"
-          className="w-full px-2 py-1 rounded-md border border-neutral-400 focus:outline-none"
+          className="w-full px-2 py-1 rounded-md border border-neutral-400 text-slate-700 focus:outline-none"
         />
       </div>
       <button className="outline-none border font-bold ml-4 px-12 py-2 rounded-lg">

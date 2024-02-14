@@ -4,14 +4,14 @@ import { createContext, useContext, useState } from "react";
 
 interface SearchContext {
   searchQuery: string;
-  updateSearchQuery: any;
-  resetSearchQuery: any;
+  updateSearchQuery: (query: string) => void;
+  resetSearchQuery: () => void;
 }
 
 const SearchContext = createContext<SearchContext>({
   searchQuery: "",
-  updateSearchQuery: undefined,
-  resetSearchQuery: undefined,
+  updateSearchQuery: (query: string) => query,
+  resetSearchQuery: () => "",
 });
 
 export const SearchProvider = ({
@@ -21,7 +21,7 @@ export const SearchProvider = ({
 }>) => {
   const [searchQuery, setSearchQuery] = useState("");
 
-  const updateSearchQuery = (query: any) => {
+  const updateSearchQuery = (query: string) => {
     console.log("Updating search query:", query);
     setSearchQuery(query);
   };
