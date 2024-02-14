@@ -1,18 +1,18 @@
-import Link from "next/link";
-import MovieCard, { MovieCardType } from "./MovieCard";
+"use client";
 
-export default async function Movies() {
-  const res = await fetch(
-    `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.api_key}&language=en-US`,
-    { next: { revalidate: 3600 } } // Will revalidate every 1 hour
-  );
+import { useMovies } from "@/hooks/useMovies";
+import MovieCard, { IMovie } from "./MovieCard";
 
-  if (!res.ok) {
-    // This will activate the closest `error.js` Error Boundary.
-    throw new Error(`Failed to fetch the data`);
+const Movies = ({ page }: any) => {
+  const { data, isLoading, isError } = useMovies(page);
+
+  if (isLoading) {
+    return <p>Loading...</p>;
   }
 
-  const data = await res.json();
+  if (isError) {
+    return <p>Error loading data</p>;
+  }
 
   const movies = data.results;
 
@@ -22,10 +22,12 @@ export default async function Movies() {
         <h1 className="text-2xl font-medium">Popular Movies</h1>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-4 mt-4 gap-4">
-        {movies.map((movie: MovieCardType) => (
+        {movies.map((movie: IMovie) => (
           <MovieCard key={movie?.id} movie={movie} />
         ))}
       </div>
     </div>
   );
-}
+};
+
+export default Movies;

@@ -4,14 +4,14 @@ import React from "react";
 import { no_image_url, image_url } from "@/config";
 import { roundToDecimal } from "@/helpers/roundToDecimal";
 
-export interface MovieCardType {
+export interface IMovie {
   id: number;
   title: string;
   poster_path: string;
   vote_average: number;
 }
 
-const MovieCard = ({ movie }: { movie: MovieCardType }) => {
+const MovieCard = ({ movie }: { movie: IMovie }) => {
   const rating = roundToDecimal(movie.vote_average, 1);
 
   return (
