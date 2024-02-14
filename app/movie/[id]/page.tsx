@@ -1,7 +1,6 @@
 "use client";
 
-import Movie from "@/components/Movie";
-import { IMovie } from "@/components/MovieCard";
+import Movie, { IMovie } from "@/components/Movie";
 
 export interface Params {
   params: {

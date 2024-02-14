@@ -7,6 +7,13 @@ import { roundToDecimal } from "@/helpers/roundToDecimal";
 import { useMovie } from "@/hooks/useMovie";
 import Image from "next/image";
 
+export interface IMovie {
+  id: number;
+  title: string;
+  poster_path: string;
+  vote_average: number;
+}
+
 const Movie = ({ params }: Params) => {
   const { id } = params;
 

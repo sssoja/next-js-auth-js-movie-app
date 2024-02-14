@@ -1,7 +1,8 @@
 "use client";
 
 import { useMovies } from "@/hooks/useMovies";
-import MovieCard, { IMovie } from "./MovieCard";
+import MovieCard from "./MovieCard";
+import { IMovie } from "./Movie";
 
 const Movies = ({ page }: any) => {
   const { data, isLoading, isError } = useMovies(page);
