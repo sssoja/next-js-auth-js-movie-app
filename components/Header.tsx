@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useSearch } from "./providers/SearchContextProvider";
 
 const Header = () => {
-  const { searchQuery, resetSearchQuery } = useSearch();
+  const { resetSearchQuery } = useSearch();
 
   return (
     <header className="flex py-4 px-5 bg-indigo-800 justify-between items-center">

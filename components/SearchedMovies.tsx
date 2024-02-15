@@ -4,7 +4,6 @@ import MovieCard from "./MovieCard";
 import { useSearchMovie } from "@/hooks/useSearchMovie";
 import { useSearch } from "./providers/SearchContextProvider";
 import { IMovie } from "./Movie";
-import { useEffect, useState } from "react";
 
 const SearchedMovies = () => {
   const { searchQuery } = useSearch();
