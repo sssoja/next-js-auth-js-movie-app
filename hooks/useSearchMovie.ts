@@ -1,9 +1,9 @@
 import { useQuery } from "react-query";
 import { base_url } from "@/config";
 
-const fetchMovies = async (page: any) => {
+const fetchMovie = async (query: string) => {
   const response = await fetch(
-    `${base_url}/movie/popular?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US`
+    `${base_url}/search/movie?query=${query}&api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US`
   );
 
   const data = await response.json();
@@ -11,8 +11,8 @@ const fetchMovies = async (page: any) => {
   return data;
 };
 
-export function useMovies(page: any) {
-  return useQuery(["movies", page], () => fetchMovies(page), {
+export function useSearchMovie(query: string) {
+  return useQuery(["movie"], () => fetchMovie(query), {
     keepPreviousData: true, // Keep previous data while fetching new data
   });
 }

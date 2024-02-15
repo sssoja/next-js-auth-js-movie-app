@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { useSearch } from "../providers/SearchContextProvider";
 
 const SearchBar = () => {
-  const { searchQuery, updateSearchQuery, resetSearchQuery } = useSearch();
+  const { searchQuery, updateSearchQuery } = useSearch();
   const [query, setQuery] = useState("");
 
   useEffect(() => {

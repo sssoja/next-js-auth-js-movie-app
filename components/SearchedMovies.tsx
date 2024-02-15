@@ -1,14 +1,13 @@
 "use client";
 
-import { useMovies } from "@/hooks/useMovies";
 import MovieCard from "./MovieCard";
-import { IMovie } from "./Movie";
+import { useSearchMovie } from "@/hooks/useSearchMovie";
 import { useSearch } from "./providers/SearchContextProvider";
-import SearchedMovies from "./SearchedMovies";
+import { IMovie } from "./Movie";
 
-const Movies = ({ page }: any) => {
-  const { data, isLoading, isError } = useMovies(page);
+const SearchedMovies = () => {
   const { searchQuery } = useSearch();
+  const { data, isLoading, isError } = useSearchMovie(searchQuery);
 
   if (isLoading) {
     return <p>Loading...</p>;
@@ -20,12 +19,10 @@ const Movies = ({ page }: any) => {
 
   const movies = data.results;
 
-  return searchQuery ? (
-    <SearchedMovies />
-  ) : (
+  return (
     <div className="flex flex-col">
       <div className="flex justify-between items-center mt-4">
-        <h1 className="text-2xl font-medium">Popular Movies</h1>
+        <h1 className="text-2xl font-medium">Results for {searchQuery}</h1>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-4 mt-4 gap-4">
         {movies.map((movie: IMovie) => (
@@ -36,4 +33,4 @@ const Movies = ({ page }: any) => {
   );
 };
 
-export default Movies;
+export default SearchedMovies;

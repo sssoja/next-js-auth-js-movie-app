@@ -7,8 +7,6 @@ import { IMovie } from "./Movie";
 import FavouriteButton from "./FavouriteButton";
 
 const MovieCard = ({ movie }: { movie: IMovie }) => {
-  const rating = roundToDecimal(movie.vote_average, 1);
-
   return (
     <div className="flex flex-col">
       <Link href={`/movie/${movie?.id}`}>
@@ -21,6 +19,7 @@ const MovieCard = ({ movie }: { movie: IMovie }) => {
             }
             alt={movie?.title}
             fill={true}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
         </div>
       </Link>
@@ -29,7 +28,7 @@ const MovieCard = ({ movie }: { movie: IMovie }) => {
         <div className="flex flex-row">
           <FavouriteButton id={movie.id} />
           <span className="p-2 ml-2 text-white rounded-md bg-indigo-700">
-            {rating}
+            {roundToDecimal(movie.vote_average, 1)}
           </span>
         </div>
       </div>
