@@ -25,7 +25,7 @@ const SearchBar = () => {
   return (
     <form
       id="search-bar"
-      className="w-full sm:w-3/5 flex flex-col sm:flex-row items-center"
+      className="w-3/5 sm:w-2/5 flex flex-col sm:flex-row items-center"
     >
       <div className="flex w-full mb-3 sm:mb-0">
         <input
