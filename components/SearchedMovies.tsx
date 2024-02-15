@@ -4,6 +4,7 @@ import MovieCard from "./MovieCard";
 import { useSearchMovie } from "@/hooks/useSearchMovie";
 import { useSearch } from "./providers/SearchContextProvider";
 import { IMovie } from "./Movie";
+import { useEffect, useState } from "react";
 
 const SearchedMovies = () => {
   const { searchQuery } = useSearch();
@@ -17,18 +18,22 @@ const SearchedMovies = () => {
     return <p>Error loading data</p>;
   }
 
-  const movies = data.results;
-
   return (
     <div className="flex flex-col">
-      <div className="flex justify-between items-center mt-4">
+      <div className="flex justify-between items-center my-3">
         <h1 className="text-2xl font-medium">Results for {searchQuery}</h1>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-4 mt-4 gap-4">
-        {movies.map((movie: IMovie) => (
-          <MovieCard key={movie?.id} movie={movie} />
-        ))}
-      </div>
+      {data.results && data.results.length > 1 ? (
+        <div className="grid grid-cols-1 sm:grid-cols-4 mt-4 gap-4">
+          {data.results?.map((movie: IMovie) => (
+            <MovieCard key={movie?.id} movie={movie} />
+          ))}
+        </div>
+      ) : (
+        <p className="text-sm font-medium">
+          No movies found... try searching again
+        </p>
+      )}
     </div>
   );
 };

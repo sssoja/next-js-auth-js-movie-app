@@ -12,7 +12,7 @@ const fetchMovie = async (query: string) => {
 };
 
 export function useSearchMovie(query: string) {
-  return useQuery(["movie"], () => fetchMovie(query), {
+  return useQuery(["searchMovie"], () => fetchMovie(query), {
     keepPreviousData: true, // Keep previous data while fetching new data
   });
 }

@@ -1,40 +1,40 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useSearch } from "../providers/SearchContextProvider";
 
 const SearchBar = () => {
   const { searchQuery, updateSearchQuery } = useSearch();
-  const [query, setQuery] = useState("");
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     console.log("This is your search query:", searchQuery);
   }, [searchQuery]);
 
-  const handleSubmit = (e: any) => {
-    e.preventDefault();
-    console.log("Query:", query);
-    updateSearchQuery(query);
-    e.target.reset();
+  const handleChange = (e: any) => {
+    // Clear any existing timeout
+    if (timeoutRef.current !== null) {
+      clearTimeout(timeoutRef.current!);
+    }
+
+    timeoutRef.current = setTimeout(() => {
+      updateSearchQuery(e.target.value);
+    }, 500);
   };
 
   return (
     <form
-      onSubmit={handleSubmit}
       id="search-bar"
-      className="w-3/4 sm:w-2/5 flex items-center"
+      className="w-full sm:w-3/5 flex flex-col sm:flex-row items-center"
     >
-      <div className="flex w-full">
+      <div className="flex w-full mb-3 sm:mb-0">
         <input
           type="text"
-          onChange={e => setQuery(e.target.value)}
+          onChange={handleChange}
           placeholder="Search for movies"
           className="w-full px-2 py-1 rounded-md border border-neutral-400 text-slate-700 focus:outline-none"
         />
       </div>
-      <button className="outline-none border font-bold ml-4 px-12 py-2 rounded-lg">
-        Search
-      </button>{" "}
     </form>
   );
 };

@@ -6,7 +6,7 @@ import { IMovie } from "./Movie";
 import { useSearch } from "./providers/SearchContextProvider";
 import SearchedMovies from "./SearchedMovies";
 
-const Movies = ({ page }: any) => {
+const Movies = (page: any) => {
   const { data, isLoading, isError } = useMovies(page);
   const { searchQuery } = useSearch();
 
@@ -18,8 +18,6 @@ const Movies = ({ page }: any) => {
     return <p>Error loading data</p>;
   }
 
-  const movies = data.results;
-
   return searchQuery ? (
     <SearchedMovies />
   ) : (
@@ -28,7 +26,7 @@ const Movies = ({ page }: any) => {
         <h1 className="text-2xl font-medium">Popular Movies</h1>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-4 mt-4 gap-4">
-        {movies.map((movie: IMovie) => (
+        {data.results.map((movie: IMovie) => (
           <MovieCard key={movie?.id} movie={movie} />
         ))}
       </div>
