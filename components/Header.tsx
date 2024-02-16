@@ -3,6 +3,7 @@
 import SearchBar from "./forms/SearchBar";
 import Link from "next/link";
 import { useSearch } from "./providers/SearchContextProvider";
+import PrimaryButton from "./PrimaryButton";
 
 const Header = () => {
   const { resetSearchQuery } = useSearch();
@@ -11,13 +12,15 @@ const Header = () => {
     <header className="flex py-4 px-5 bg-indigo-800 justify-between items-center">
       <Link
         href="/"
-        className="text-xl font-medium text-white"
+        className="w-40 md:w-48 lg:w-56 xl:w-64 text-xl font-medium text-white"
         onClick={() => resetSearchQuery()}
       >
         Movie App
       </Link>
-      <div className="flex items-center gap-8"></div>
-      <SearchBar />
+      <div className="w-full flex flex-row items-center sm:justify-end ml-3 sm:ml-0">
+        <SearchBar />
+        <PrimaryButton className="ml-4">Log in</PrimaryButton>
+      </div>
     </header>
   );
 };
