@@ -3,7 +3,7 @@
 import SearchBar from "./forms/SearchBar";
 import Link from "next/link";
 import { useSearch } from "./providers/SearchContextProvider";
-import PrimaryButton from "./PrimaryButton";
+import LoginButton from "./login/LoginButton";
 
 const Header = () => {
   const { resetSearchQuery } = useSearch();
@@ -19,7 +19,7 @@ const Header = () => {
       </Link>
       <div className="w-full flex flex-row items-center sm:justify-end ml-3 sm:ml-0">
         <SearchBar />
-        <PrimaryButton className="ml-4">Log in</PrimaryButton>
+        <LoginButton />
       </div>
     </header>
   );

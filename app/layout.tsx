@@ -4,6 +4,7 @@ import "./globals.css";
 import ReactQueryProvider from "@/components/providers/ReactQueryProvider";
 import Header from "@/components/Header";
 import { SearchProvider } from "@/components/providers/SearchContextProvider";
+import Provider from "@/components/providers/SessionProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,10 +22,12 @@ export default function RootLayout({
     <html lang="en">
       <ReactQueryProvider>
         <SearchProvider>
-          <body className={inter.className}>
-            <Header />
-            {children}
-          </body>
+          <Provider>
+            <body className={inter.className}>
+              <Header />
+              {children}
+            </body>
+          </Provider>
         </SearchProvider>
       </ReactQueryProvider>
     </html>

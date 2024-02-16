@@ -1,7 +1,7 @@
 "use client";
 
 import { Params } from "@/app/movie/[id]/page";
-import { no_image_url, image_url } from "@/config";
+import { tmdb_api_placeholder_image, tmdb_api_image_url } from "@/config";
 import { formatGenres, formatRunTime } from "@/helpers/formatter";
 import { roundToDecimal } from "@/helpers/roundToDecimal";
 import { useMovie } from "@/hooks/useMovie";
@@ -41,8 +41,8 @@ const Movie = ({ params }: Params) => {
               <Image
                 src={
                   movie?.poster_path
-                    ? `${image_url}${movie?.poster_path}`
-                    : `${no_image_url}`
+                    ? `${tmdb_api_image_url}${movie?.poster_path}`
+                    : `${tmdb_api_placeholder_image}`
                 }
                 alt={movie?.title}
                 fill={true}

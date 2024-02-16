@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { no_image_url, image_url } from "@/config";
+import { tmdb_api_placeholder_image, tmdb_api_image_url } from "@/config";
 import { roundToDecimal } from "@/helpers/roundToDecimal";
 import { IMovie } from "./Movie";
 import FavouriteButton from "./FavouriteButton";
@@ -14,8 +14,8 @@ const MovieCard = ({ movie }: { movie: IMovie }) => {
           <Image
             src={
               movie?.poster_path
-                ? `${image_url}${movie?.poster_path}`
-                : `${no_image_url}`
+                ? `${tmdb_api_image_url}${movie?.poster_path}`
+                : `${tmdb_api_placeholder_image}`
             }
             alt={movie?.title}
             fill={true}
