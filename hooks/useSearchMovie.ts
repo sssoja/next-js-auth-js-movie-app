@@ -1,9 +1,9 @@
 import { useQuery } from "react-query";
-import { base_url } from "@/config";
+import { tmdb_api_base_url } from "@/config";
 
 const fetchMovie = async (query: string) => {
   const response = await fetch(
-    `${base_url}/search/movie?query=${query}&api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US`
+    `${tmdb_api_base_url}/search/movie?query=${query}&api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US`
   );
 
   const data = await response.json();
