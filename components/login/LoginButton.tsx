@@ -18,7 +18,9 @@ const LoginButton = () => {
   if (status === "authenticated") {
     return (
       <>
-        <p className="mr-2 ml-4">Signed in as {session.user?.name}</p>
+        <span className="flex flex-row mr-2">
+          Signed in as {session.user?.name}
+        </span>
         <Image
           src={
             session?.user?.image ||
@@ -29,6 +31,7 @@ const LoginButton = () => {
           height={24}
           className="rounded-full"
         />
+
         <PrimaryButton
           leftIcon="ArrowLeftEndOnRectangleIcon"
           onClick={handleSignOutClick}
@@ -42,9 +45,7 @@ const LoginButton = () => {
   return (
     <>
       <Link href="/api/auth/signin">
-        <PrimaryButton leftIcon="UserIcon" className="ml-4">
-          Log in
-        </PrimaryButton>
+        <PrimaryButton leftIcon="UserIcon">Log in</PrimaryButton>
       </Link>
     </>
   );

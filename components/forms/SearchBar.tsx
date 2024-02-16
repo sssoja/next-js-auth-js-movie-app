@@ -27,7 +27,7 @@ const SearchBar = () => {
   };
 
   return (
-    <form id="search-bar" className="flex sm:w-2/5">
+    <form id="search-bar" className="flex mx-4 sm:w-2/5">
       <input
         type="text"
         value={inputValue}
