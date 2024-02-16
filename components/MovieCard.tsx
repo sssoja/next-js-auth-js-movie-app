@@ -10,7 +10,7 @@ const MovieCard = ({ movie }: { movie: IMovie }) => {
   return (
     <div className="flex flex-col">
       <Link href={`/movie/${movie?.id}`}>
-        <div className="w-full h-[400px] relative">
+        <div className="w-full h-[400px] relative ease-in duration-300 hover:scale-105">
           <Image
             src={
               movie?.poster_path
