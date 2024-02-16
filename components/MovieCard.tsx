@@ -23,11 +23,11 @@ const MovieCard = ({ movie }: { movie: IMovie }) => {
           />
         </div>
       </Link>
-      <div className="flex gap-4 justify-between items-center mt-3">
+      <div className="flex gap-4 justify-between mt-3">
         <h2 className="text-lg font-medium">{movie?.title}</h2>
-        <div className="flex flex-row">
+        <div className="flex items-start">
           <FavouriteButton id={movie.id} />
-          <span className="p-2 ml-2 text-white rounded-md bg-indigo-700">
+          <span className="p-2 ml-2 rounded-md bg-indigo-700">
             {roundToDecimal(movie.vote_average, 1)}
           </span>
         </div>

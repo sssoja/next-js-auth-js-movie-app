@@ -28,10 +28,7 @@ const FavouriteButton = ({ id }: Props) => {
   }, [id]);
 
   return (
-    <button
-      className="flex cursor-pointer items-center justify-center rounded-md p-1 "
-      onClick={handleFavouriteClick}
-    >
+    <button className="p-1 cursor-pointer" onClick={handleFavouriteClick}>
       {Icon}
     </button>
   );
