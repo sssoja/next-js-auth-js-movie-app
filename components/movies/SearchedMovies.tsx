@@ -2,8 +2,8 @@
 
 import MovieCard from "./MovieCard";
 import { useSearchMovie } from "@/hooks/useSearchMovie";
-import { useSearch } from "./providers/SearchContextProvider";
-import { IMovie } from "./Movie";
+import { useSearch } from "../providers/SearchContextProvider";
+import { IMovie } from "./MovieDetails";
 
 const SearchedMovies = () => {
   const { searchQuery } = useSearch();
@@ -29,9 +29,7 @@ const SearchedMovies = () => {
           ))}
         </div>
       ) : (
-        <p className="text-sm font-medium">
-          No movies found... try searching again
-        </p>
+        <p className="text-sm font-medium">No movies found... Search again</p>
       )}
     </div>
   );

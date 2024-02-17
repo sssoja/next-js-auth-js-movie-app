@@ -3,7 +3,7 @@
 import { useMovies } from "@/hooks/useMovies";
 import MovieCard from "./MovieCard";
 import { IMovie } from "./MovieDetails";
-import { useSearch } from "./providers/SearchContextProvider";
+import { useSearch } from "../providers/SearchContextProvider";
 import SearchedMovies from "./SearchedMovies";
 
 const MoviesList = (page: any) => {

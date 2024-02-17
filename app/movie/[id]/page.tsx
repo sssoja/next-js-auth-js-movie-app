@@ -1,6 +1,6 @@
 "use client";
 
-import Movie, { IMovie } from "@/components/Movie";
+import MovieDetails, { IMovie } from "@/components/movies/MovieDetails";
 
 export interface Params {
   params: {
@@ -11,7 +11,7 @@ export interface Params {
 const page = ({ params }: Params) => {
   return (
     <main className="mt-5 flex flex-col">
-      <Movie params={params} />
+      <MovieDetails params={params} />
     </main>
   );
 };

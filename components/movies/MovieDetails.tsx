@@ -4,7 +4,7 @@ import { Params } from "@/app/movie/[id]/page";
 import { tmdb_api_placeholder_image, tmdb_api_image_url } from "@/config";
 import { formatGenres, formatRunTime } from "@/helpers/formatter";
 import { roundToDecimal } from "@/helpers/roundToDecimal";
-import { useMovie } from "@/hooks/useMovie";
+import { useMovieById } from "@/hooks/useMovieById";
 import Image from "next/image";
 
 export interface IMovie {
@@ -14,10 +14,10 @@ export interface IMovie {
   vote_average: number;
 }
 
-const Movie = ({ params }: Params) => {
+const MovieDetails = ({ params }: Params) => {
   const { id } = params;
 
-  const { data, isLoading, isError } = useMovie(id);
+  const { data, isLoading, isError } = useMovieById(id);
 
   if (isLoading) {
     return <p>Loading...</p>;
@@ -77,4 +77,4 @@ const Movie = ({ params }: Params) => {
   );
 };
 
-export default Movie;
+export default MovieDetails;

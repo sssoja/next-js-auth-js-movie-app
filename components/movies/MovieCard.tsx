@@ -3,8 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { tmdb_api_placeholder_image, tmdb_api_image_url } from "@/config";
 import { roundToDecimal } from "@/helpers/roundToDecimal";
-import { IMovie } from "./Movie";
-import FavouriteButton from "./FavouriteButton";
+import { IMovie } from "./MovieDetails";
+import FavouriteButton from "../FavouriteButton";
 import { useSession } from "next-auth/react";
 
 const MovieCard = ({ movie }: { movie: IMovie }) => {
@@ -30,10 +30,10 @@ const MovieCard = ({ movie }: { movie: IMovie }) => {
         <h2 className="text-lg font-medium">{movie?.title}</h2>
         <div className="flex items-start">
           {session && status === "authenticated" && (
-            <FavouriteButton id={movie.id} />
+            <FavouriteButton id={movie?.id} />
           )}
           <span className="p-2 ml-2 rounded-md bg-indigo-700">
-            {roundToDecimal(movie.vote_average, 1)}
+            {roundToDecimal(movie?.vote_average, 1)}
           </span>
         </div>
       </div>

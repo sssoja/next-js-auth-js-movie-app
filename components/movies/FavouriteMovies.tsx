@@ -1,6 +1,5 @@
 "use client";
 
-import { useMovies } from "@/hooks/useMovies";
 import MovieCard from "./MovieCard";
 import { IMovie } from "./MovieDetails";
 import { UseQueryResult, useQuery } from "react-query";

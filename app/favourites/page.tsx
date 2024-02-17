@@ -1,4 +1,4 @@
-import FavouriteMovies from "@/components/FavouriteMovies";
+import FavouriteMovies from "@/components/movies/FavouriteMovies";
 
 export default function Page() {
   return (
