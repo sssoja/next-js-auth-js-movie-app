@@ -31,8 +31,9 @@ const FavouriteMovies = (page: any) => {
   return (
     movies && (
       <div className="flex flex-col">
-        <div className="flex justify-between items-center my-3">
+        <div className="flex justify-between items-center mt-4">
           <h1 className="text-2xl font-medium">
+            {" "}
             Favourite Movies {movies.length > 0 && `(${movies.length})`}
           </h1>
         </div>
