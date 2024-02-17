@@ -23,9 +23,16 @@ const FavouriteMovies = (page: any) => {
     setIds(ids);
   }, [items]);
 
-  const queries = ids?.map((id: number) =>
-    useQuery(["movie", id], () => fetchMovie(id))
-  );
+  const getQueries = () => {
+    if (isEmpty) {
+      return;
+    }
+    return ids?.map((id: number) =>
+      useQuery(["movie", id], () => fetchMovie(id))
+    );
+  };
+
+  const queries = getQueries();
 
   const movies = queries?.map((query: UseQueryResult<IMovie>) => query.data);
 
