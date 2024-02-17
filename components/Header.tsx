@@ -23,7 +23,7 @@ const Header = () => {
       <div className="w-full flex flex-row items-center sm:justify-end ml-3 sm:ml-0">
         {session && status === "authenticated" && (
           <Link href="/favourites">
-            <PrimaryButton>Favourite movies </PrimaryButton>
+            <PrimaryButton leftIcon="HeartIcon">Favourites</PrimaryButton>
           </Link>
         )}
         <SearchBar />

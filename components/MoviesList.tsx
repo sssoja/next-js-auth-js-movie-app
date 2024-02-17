@@ -2,11 +2,11 @@
 
 import { useMovies } from "@/hooks/useMovies";
 import MovieCard from "./MovieCard";
-import { IMovie } from "./Movie";
+import { IMovie } from "./MovieDetails";
 import { useSearch } from "./providers/SearchContextProvider";
 import SearchedMovies from "./SearchedMovies";
 
-const Movies = (page: any) => {
+const MoviesList = (page: any) => {
   const { data, isLoading, isError } = useMovies(page);
   const { searchQuery } = useSearch();
 
@@ -34,4 +34,4 @@ const Movies = (page: any) => {
   );
 };
 
-export default Movies;
+export default MoviesList;
