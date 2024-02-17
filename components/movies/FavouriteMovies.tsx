@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import MovieCard from "./MovieCard";
 import { IMovie } from "./MovieDetails";
 import { UseQueryResult, useQuery } from "react-query";
@@ -8,21 +9,29 @@ import { fetchMovie } from "@/hooks/useMovieById";
 const FavouriteMovies = (page: any) => {
   const items = localStorage.getItem("favourites")?.split(",");
 
-  const noFavourites = !localStorage.getItem("favourites");
-
-  const outputArray = items?.map(item =>
+  const favouritesArray = items?.map((item: string) =>
     parseInt(item.replace(/\[|\]/g, ""), 10)
   );
 
-  const queries = outputArray?.map((id: number) =>
+  const filtered = favouritesArray?.filter(item => isNaN(item));
+
+  const isEmpty = filtered?.length ? true : false;
+
+  const [ids, setIds] = useState(favouritesArray);
+
+  useEffect(() => {
+    setIds(ids);
+  }, [items]);
+
+  const queries = ids?.map((id: number) =>
     useQuery(["movie", id], () => fetchMovie(id))
   );
 
   const movies = queries?.map((query: UseQueryResult<IMovie>) => query.data);
 
-  if (noFavourites) {
+  if (isEmpty) {
     return (
-      <p className="text-sm font-medium">
+      <p className="text-xl font-medium">
         Start adding your favourite movies...
       </p>
     );
