@@ -6,6 +6,10 @@ const fetchMovies = async (page: any) => {
     `${tmdb_api_base_url}/movie/popular?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US`
   );
 
+  if (!response.ok) {
+    throw new Error("No movies found...");
+  }
+
   const data = await response.json();
 
   return data;
