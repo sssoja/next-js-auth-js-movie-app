@@ -12,7 +12,7 @@ const FavouriteMovies = () => {
 
   const isEmpty = !favourites.length;
 
-  const { data: movies, isLoading, isError, refetch } = useFavouriteMovies();
+  const { data: movies, isLoading, isError } = useFavouriteMovies();
 
   if (isLoading) {
     return <p>Loading...</p>;
@@ -45,7 +45,7 @@ const FavouriteMovies = () => {
         </div>
         {movies.length > 0 && (
           <div className="grid grid-cols-1 sm:grid-cols-4 mt-4 gap-4">
-            {movies.map((movie: IMovie | undefined) => (
+            {movies.map((movie: IMovie) => (
               <MovieCard key={movie?.id} movie={movie} />
             ))}
           </div>

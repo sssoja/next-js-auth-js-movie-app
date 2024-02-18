@@ -1,5 +1,6 @@
 import { useQuery } from "react-query";
 import { tmdb_api_base_url } from "@/config";
+import { getFavourites } from "@/helpers/favourites";
 
 export const fetchMovie = async (id: number) => {
   const response = await fetch(
@@ -15,8 +16,13 @@ export const fetchMovie = async (id: number) => {
   return data;
 };
 
-export function useMovieById(id: number) {
-  return useQuery(["favouriteMovies"], () => fetchMovie(id), {
-    keepPreviousData: true, // Keep previous data while fetching new data
+export function useFavouriteMovies() {
+  const favourites = getFavourites();
+
+  return useQuery(["favouriteMovies", favourites], async () => {
+    // Fetch all movies concurrently
+    const promises = favourites.map(id => fetchMovie(id));
+    const result = await Promise.all(promises);
+    return result;
   });
 }
