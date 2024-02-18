@@ -22,7 +22,7 @@ const Header = () => {
       </Link>
       <div className="w-full flex flex-col items-end  ml-3 sm:flex-row sm:items-center sm:justify-end sm:ml-0">
         {session && status === "authenticated" && (
-          <Link href="/favourites">
+          <Link href="/favourites" onClick={() => resetSearchQuery()}>
             <PrimaryButton leftIcon="HeartIcon">Favourites</PrimaryButton>
           </Link>
         )}
