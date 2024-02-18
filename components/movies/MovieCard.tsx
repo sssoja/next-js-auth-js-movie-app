@@ -7,7 +7,7 @@ import { IMovie } from "./MovieDetails";
 import FavouriteButton from "../FavouriteButton";
 import { useSession } from "next-auth/react";
 
-const MovieCard = ({ movie }: { movie: IMovie | undefined }) => {
+const MovieCard = ({ movie }: { movie: IMovie }) => {
   const { data: session, status } = useSession();
 
   return (
