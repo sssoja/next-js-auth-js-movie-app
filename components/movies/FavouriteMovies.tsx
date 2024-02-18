@@ -2,27 +2,34 @@
 
 import MovieCard from "./MovieCard";
 import { IMovie } from "./MovieDetails";
-import { UseQueryResult, useQuery } from "react-query";
-import { fetchMovie } from "@/hooks/useMovieById";
+import { useQuery } from "react-query";
+import { fetchMovie } from "@/hooks/useFavouriteMovies";
 import { getFavourites } from "@/helpers/favourites";
+import SearchedMovies from "./SearchedMovies";
+import { useSearch } from "../providers/SearchContextProvider";
 
 const FavouriteMovies = (page: any) => {
   const favourites = getFavourites();
 
   const isEmpty = !favourites.length;
 
-  const getQueries = () => {
-    if (isEmpty) {
-      return;
+  const { data: movies, isLoading, isError, refetch } = useQuery(
+    ["favouriteMovies", favourites],
+    async () => {
+      // Fetch all movies concurrently
+      const promises = favourites.map(id => fetchMovie(id));
+      const result = await Promise.all(promises);
+      return result;
     }
-    return favourites?.map((id: number) =>
-      useQuery(["movie", id], () => fetchMovie(id))
-    );
-  };
+  );
 
-  const queries = getQueries();
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
 
-  const movies = queries?.map((query: UseQueryResult<IMovie>) => query.data);
+  if (isError) {
+    return <p>Error fetching favourite movies</p>;
+  }
 
   if (isEmpty) {
     return (
@@ -32,7 +39,11 @@ const FavouriteMovies = (page: any) => {
     );
   }
 
-  return (
+  const { searchQuery } = useSearch();
+
+  return searchQuery ? (
+    <SearchedMovies />
+  ) : (
     movies && (
       <div className="flex flex-col">
         <div className="flex justify-between items-center mt-4">
@@ -54,3 +65,6 @@ const FavouriteMovies = (page: any) => {
 };
 
 export default FavouriteMovies;
+
+{
+}
