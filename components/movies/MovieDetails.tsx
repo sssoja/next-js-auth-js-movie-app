@@ -23,6 +23,8 @@ const MovieDetails = ({ params }: Params) => {
 
   const { data: session, status } = useSession();
 
+  console.log(data);
+
   if (isLoading) {
     return <p>Loading...</p>;
   }
@@ -39,9 +41,9 @@ const MovieDetails = ({ params }: Params) => {
   return (
     movie && (
       <div className="w-[1000px] max-w-full px-4 mx-auto">
-        <div className="flex flex-col mt-6">
-          <div className="flex gap-7">
-            <div className="flex relative">
+        <div className="flex flex-col sm:mt-6">
+          <div className="flex flex-col sm:flex-row sm:gap-7">
+            <div className="flex relative mb-4 sm:mb-0">
               <div className="w-[270px] h-[400px] relative">
                 <Image
                   src={
@@ -64,7 +66,7 @@ const MovieDetails = ({ params }: Params) => {
                   <FavouriteButton id={movie.id} />
                 )}
               </div>
-              <div className="flex gap-4 items-center mt-4">
+              <div className="flex gap-4 items-center mt-5">
                 <h5 className="text-md font-medium">{movie.release_date}</h5>
                 <h5> | </h5>
                 {movie.runtime > 0 && (
@@ -75,7 +77,7 @@ const MovieDetails = ({ params }: Params) => {
                 )}
                 <h5 className="text-md font-medium">{genres}</h5>
               </div>
-              <div className="flex flex-col mt-5">
+              <div className="flex flex-col my-5">
                 <p className="text-md font-normal">{movie.overview}</p>
               </div>
             </div>
