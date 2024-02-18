@@ -64,7 +64,7 @@ const PrimaryButton = ({
   );
 };
 
-const Icon = ({
+export const Icon = ({
   name,
   className,
 }: {
