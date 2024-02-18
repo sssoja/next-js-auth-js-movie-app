@@ -2,26 +2,17 @@
 
 import MovieCard from "./MovieCard";
 import { IMovie } from "./MovieDetails";
-import { useQuery } from "react-query";
-import { fetchMovie } from "@/hooks/useFavouriteMovies";
+import { useFavouriteMovies } from "@/hooks/useFavouriteMovies";
 import { getFavourites } from "@/helpers/favourites";
 import SearchedMovies from "./SearchedMovies";
 import { useSearch } from "../providers/SearchContextProvider";
 
-const FavouriteMovies = (page: any) => {
+const FavouriteMovies = () => {
   const favourites = getFavourites();
 
   const isEmpty = !favourites.length;
 
-  const { data: movies, isLoading, isError, refetch } = useQuery(
-    ["favouriteMovies", favourites],
-    async () => {
-      // Fetch all movies concurrently
-      const promises = favourites.map(id => fetchMovie(id));
-      const result = await Promise.all(promises);
-      return result;
-    }
-  );
+  const { data: movies, isLoading, isError, refetch } = useFavouriteMovies();
 
   if (isLoading) {
     return <p>Loading...</p>;
@@ -45,7 +36,7 @@ const FavouriteMovies = (page: any) => {
     <SearchedMovies />
   ) : (
     movies && (
-      <div className="flex flex-col">
+      <div className="w-full flex flex-col">
         <div className="flex justify-between items-center mt-4">
           <h1 className="text-2xl font-medium">
             {" "}

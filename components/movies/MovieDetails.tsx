@@ -23,8 +23,6 @@ const MovieDetails = ({ params }: Params) => {
 
   const { data: session, status } = useSession();
 
-  console.log(data);
-
   if (isLoading) {
     return <p>Loading...</p>;
   }

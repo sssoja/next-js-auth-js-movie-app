@@ -6,7 +6,7 @@ export default async function Page() {
   const session = await getServerSession(authOptions);
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between px-16 py-8 sm:px-20">
+    <main className="flex min-h-screen flex-col items-center justify-between px-8 py-8 sm:px-12">
       {session ? (
         <FavouriteMovies />
       ) : (

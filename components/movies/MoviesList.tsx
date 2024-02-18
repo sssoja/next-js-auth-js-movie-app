@@ -35,7 +35,7 @@ const MoviesList = () => {
     <SearchedMovies />
   ) : (
     <>
-      <div className="flex flex-col">
+      <div className="w-full flex flex-col">
         <div className="flex justify-between items-center mt-4">
           <h1 className="text-2xl font-medium">Popular Movies</h1>
           <div>
