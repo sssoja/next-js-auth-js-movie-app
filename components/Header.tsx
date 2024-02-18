@@ -20,7 +20,7 @@ const Header = () => {
       >
         Movie App
       </Link>
-      <div className="w-full flex flex-row items-center sm:justify-end ml-3 sm:ml-0">
+      <div className="w-full flex flex-col items-end  ml-3 sm:flex-row sm:items-center sm:justify-end sm:ml-0">
         {session && status === "authenticated" && (
           <Link href="/favourites">
             <PrimaryButton leftIcon="HeartIcon">Favourites</PrimaryButton>

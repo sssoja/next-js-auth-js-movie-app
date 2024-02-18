@@ -18,24 +18,23 @@ const LoginButton = () => {
   if (status === "authenticated") {
     return (
       <>
-        <span className="flex flex-row mr-2">
-          Signed in as {session.user?.name}
-        </span>
-        <Image
-          src={
-            session?.user?.image ||
-            `${avatar_api_base_url}/api/initials/${session?.user?.name}.svg`
-          }
-          alt="User Profile Image"
-          width={24}
-          height={24}
-          className="rounded-full"
-        />
-
+        <div className="flex flex-row">
+          <span className="mr-2">Signed in as {session.user?.name}</span>
+          <Image
+            src={
+              session?.user?.image ||
+              `${avatar_api_base_url}/api/initials/${session?.user?.name}.svg`
+            }
+            alt="User Profile Image"
+            width={24}
+            height={24}
+            className="rounded-full"
+          />
+        </div>
         <PrimaryButton
           leftIcon="ArrowLeftEndOnRectangleIcon"
           onClick={handleSignOutClick}
-          className="ml-4"
+          className="mt-2 sm:mt-0 sm:ml-4"
         >
           Log out
         </PrimaryButton>
