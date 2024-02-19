@@ -1,5 +1,4 @@
 import * as icons from "@heroicons/react/24/solid";
-import LoadingSpinner from "./LoadingSpinner";
 import { classNames } from "@/helpers/strings";
 
 const PrimaryButton = ({
@@ -8,7 +7,6 @@ const PrimaryButton = ({
   leftIcon,
   type = "button",
   className = "",
-  loading = false,
   onClick = () => {},
 }: {
   children: string;
@@ -16,7 +14,6 @@ const PrimaryButton = ({
   size?: "100" | "200" | "300" | "400" | "500";
   type?: "button" | "reset" | "submit" | undefined;
   className?: string;
-  loading?: boolean;
   onClick?: (e: any) => void;
 }) => {
   const classNamePerSize = {
@@ -39,26 +36,15 @@ const PrimaryButton = ({
     <button
       type={type}
       onClick={onClick}
-      disabled={loading}
       className={classNames(classNamePerSize[size], className)}
     >
       <span className="relative flex items-center justify-center">
-        <span
-          className={classNames(
-            "flex items-center justify-center",
-            loading ? "opacity-0" : "opacity-1"
-          )}
-        >
+        <span className={classNames("flex items-center justify-center")}>
           {leftIcon && (
             <Icon name={leftIcon} className={iconClassNamePerSize[size]} />
           )}
           {children}
         </span>
-        {loading && (
-          <span className="absolute">
-            <LoadingSpinner />
-          </span>
-        )}
       </span>
     </button>
   );
