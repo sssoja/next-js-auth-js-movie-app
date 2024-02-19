@@ -8,6 +8,8 @@ import { useMovieById } from "@/hooks/useMovieById";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import FavouriteButton from "../FavouriteButton";
+import { useSearch } from "../providers/SearchContextProvider";
+import SearchedMovies from "./SearchedMovies";
 
 export interface IMovie {
   id: number;
@@ -36,7 +38,11 @@ const MovieDetails = ({ params }: Params) => {
   const duration = formatRunTime(movie.runtime);
   const genres = formatGenres(movie.genres);
 
-  return (
+  const { searchQuery } = useSearch();
+
+  return searchQuery ? (
+    <SearchedMovies />
+  ) : (
     movie && (
       <div className="w-[1000px] max-w-full px-4 mx-auto">
         <div className="flex flex-col sm:mt-6">

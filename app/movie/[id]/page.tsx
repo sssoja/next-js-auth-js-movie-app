@@ -10,7 +10,7 @@ export interface Params {
 
 const page = ({ params }: Params) => {
   return (
-    <main className="mt-5 flex flex-col">
+    <main className="flex min-h-screen flex-col items-center justify-between px-8 py-8 sm:px-12">
       <MovieDetails params={params} />
     </main>
   );
